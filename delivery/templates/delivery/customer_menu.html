@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu Items</title>
+  <style>
+    body {
+      background-color: #fffaf3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h3 {
+      text-align: center;
+      color: #2e7d32;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    a.cart-link-top {
+      display: inline-block;
+      margin-bottom: 20px;
+      background-color: #ff7043;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a.cart-link-top:hover {
+      background-color: #f4511e;
+      transform: scale(1.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    thead {
+      background-color: #ff7043;
+      color: white;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    a.add-to-cart-btn {
+      background-color: #2e7d32;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    a.add-to-cart-btn:hover {
+      background-color: #1b5e20;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 25px;
+        border-bottom: 2px solid #ddd;
+      }
+
+      td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 16px;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      a.add-to-cart-btn {
+        margin-top: 10px;
+        display: block;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>Welcome {{username}}!</h3>
+
+  <a href="{% url 'show_cart' username %}" class="cart-link-top">Show cart</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Picture</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Is Veg?</th>
+        <th>Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in itemList %}
+      <tr>
+        <td data-label="Item Name">{{ item.name }}</td>
+        <td data-label="Picture">
+          <img src="{{ item.picture }}" alt="{{ item.name }}">
+        </td>
+        <td data-label="Description">{{ item.description }}</td>
+        <td data-label="Price">{{ item.price }}</td>
+        <td data-label="Is Veg?">{{ item.vegeterian }}</td>
+        <td data-label="Operation">
+          <a href="{% url 'add_to_cart' item.id username %}" class="add-to-cart-btn">Add to cart</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

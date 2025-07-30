@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meal-Buddy</title>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #fffaf3;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h3 {
+      font-size: 2rem;
+      color: #2e7d32;
+      margin-bottom: 30px;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #ff7043;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #f4511e;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      a {
+        width: 80%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>Welcome to Meal Buddy!</h3>
+  <a href="open_signup">SIGN UP</a><br>
+  <a href="open_signin">SIGN IN</a>
+</body>
+</html>

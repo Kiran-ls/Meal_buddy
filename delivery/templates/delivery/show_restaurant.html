@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Show Restaurants</title>
+  <style>
+    body {
+      background-color: #fffaf3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 12px rgba(0,0,0,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    thead {
+      background-color: #ff7043;
+      color: white;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    a.action-btn {
+      display: inline-block;
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      color: white;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a.update-info {
+      background-color: #2e7d32;
+    }
+    a.update-info:hover {
+      background-color: #1b5e20;
+      transform: scale(1.05);
+    }
+
+    a.update-menu {
+      background-color: #0288d1;
+    }
+    a.update-menu:hover {
+      background-color: #01579b;
+      transform: scale(1.05);
+    }
+
+    a.delete-restaurant {
+      background-color: #d32f2f;
+    }
+    a.delete-restaurant:hover {
+      background-color: #9a0007;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 25px;
+        border-bottom: 2px solid #ddd;
+      }
+
+      td {
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 16px;
+        width: 45%;
+        font-weight: 700;
+        text-align: left;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      a.action-btn {
+        display: block;
+        width: fit-content;
+        margin: 10px auto;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Restaurant Name</th>
+        <th>Picture</th>
+        <th>Cuisine</th>
+        <th>Rating</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in restaurantList %}
+      <tr>
+        <td data-label="Restaurant Name">{{ r.name }}</td>
+        <td data-label="Picture">
+          <img src="{{ r.picture }}" alt="{{ r.name }}">
+        </td>
+        <td data-label="Cuisine">{{ r.cuisine }}</td>
+        <td data-label="Rating">{{ r.rating }}</td>
+        <td data-label="Operations">
+          <a href="{% url 'open_update_restaurant' r.id %}" class="action-btn update-info">Update Info</a><br>
+          <a href="{% url 'open_update_menu' r.id %}" class="action-btn update-menu">Update Menu</a><br>
+          <a href="{% url 'delete_restaurant' r.id %}" class="action-btn delete-restaurant">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

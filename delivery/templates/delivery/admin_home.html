@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Home</title>
+  <style>
+    body {
+      background-color: #fffaf3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h3 {
+      color: #2e7d32;
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      background-color: #ff7043;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      margin: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #f4511e;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      h3 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>Welcome to Admin HOME!</h3>
+  <a href="open_add_restaurant">ADD NEW RESTAURANT</a>
+  <a href="open_show_restaurant">SHOW RESTAURANTS</a>
+</body>
+</html>

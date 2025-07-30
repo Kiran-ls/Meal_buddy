@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+  <title>Order Summary</title>
+  <style>
+    body {
+      background-color: #fff8f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #5d4037;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(93, 64, 55, 0.2);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #d84315;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #6d4c41;
+      font-size: 1.4rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #5d4037;
+      line-height: 1.6;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 24px;
+      background-color: #ff7043;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #e64a19;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Thank you for your order, {{ username }}!</h1>
+
+    <h2>Delivery Address</h2>
+    <p>{{ customer.address }}</p>
+
+    <p>Your order will be delivered to this location shortly. Thank you for choosing <strong>Meal Buddy</strong>!</p>
+
+    {% if cart_items %}
+      <a href="{% url 'customer_menu' cart_items.0.restaurant.id username %}">Back to Restaurants</a>
+    {% else %}
+      <a href="/">Back to Home</a>
+    {% endif %}
+  </div>
+</body>
+</html>

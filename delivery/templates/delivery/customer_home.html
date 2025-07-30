@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Home</title>
+  <style>
+    body {
+      background-color: #fffaf3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h3 {
+      text-align: center;
+      color: #2e7d32;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    thead {
+      background-color: #ff7043;
+      color: white;
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+      display: inline-block;
+      padding: 10px 16px;
+      background-color: #2e7d32;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #1b5e20;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      th {
+        background-color: #ff7043;
+        color: white;
+        text-align: left;
+        padding-top: 10px;
+      }
+
+      td {
+        padding: 10px 0;
+        border: none;
+      }
+
+      tr {
+        margin-bottom: 30px;
+        border-bottom: 2px solid #ddd;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      a {
+        margin-top: 10px;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>Welcome {{username}}!</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Restaurant Name</th>
+        <th>Picture</th>
+        <th>Cuisine</th>
+        <th>Rating</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in restaurantList %}
+      <tr>
+        <td>{{ r.name }}</td>
+        <td>
+          <img src="{{ r.picture }}" alt="{{ r.name }}">
+        </td>
+        <td>{{ r.cuisine }}</td>
+        <td>{{ r.rating }}</td>
+        <td>
+          <a href="{% url 'view_menu' r.id username %}">View Menu</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

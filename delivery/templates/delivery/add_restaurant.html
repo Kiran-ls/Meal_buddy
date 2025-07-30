@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Restaurant</title>
+  <style>
+    body {
+      background-color: #fffaf3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    h3 {
+      color: #2e7d32;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    label {
+      display: block;
+      color: #555;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #ff7043;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #f4511e;
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 600px) {
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>ADD restaurant here</h3>
+  <form action="{% url 'add_restaurant' %}" method="post">
+    {% csrf_token %}
+    
+    <label>Restaurant Name</label>
+    <input type="text" name="name" required />
+
+    <label>Picture URL</label>
+    <input type="text" name="picture" required />
+
+    <label>Cuisine</label>
+    <input type="text" name="cuisine" required />
+
+    <label>Rating</label>
+    <input type="number" name="rating" min="0" max="5" step="0.5" required />
+
+    <button type="submit">Add Restaurant</button>
+  </form>
+</body>
+</html>
